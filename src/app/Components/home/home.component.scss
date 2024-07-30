@@ -1,0 +1,24 @@
+.p-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.0rem;
+    margin-top: 10px;
+}
+
+.p-field label {
+    margin-bottom: 0.0rem;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // Três colunas
+    gap: 1rem;
+}
+.full-width-dropdown {
+    width: 100%;
+}
+
+.submit-button-container {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente o botão */
+    margin-top: 20px; /* Espaçamento acima do botão, ajuste conforme necessário */
+}

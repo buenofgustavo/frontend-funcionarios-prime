@@ -1,0 +1,24 @@
+<div class="card">
+    <p-menubar [model]="items2">
+        <ng-template pTemplate="item" let-item let-root="root">
+            <a pRipple class="flex align-items-center p-menuitem-link" [routerLink]="item.routerLink" (click)="item.command && item.command()">
+                <span [class]="item.icon + ' icon-spacing'"></span>
+                <span class="ml-2">{{ item.label }}</span>
+            </a>
+        </ng-template>
+        <ng-template pTemplate="end">
+            <div class="flex align-items-center gap-2">
+              <div style="display: flex; align-items: center;">
+                <p-avatar [style]="{'margin-right': '10px'}" label="GB" shape="circle" size="large"></p-avatar>
+                <div style="display: flex; flex-direction: column;">
+                  <span [ngStyle]="{'margin-right': '5px'}" class="text-base">Gustavo Bueno</span>
+                  <span [ngStyle]="{'margin-right': '5px', 'font-size': 'x-small'}" class="text-base">buenofgustavo&commat;gmail.com</span>
+                </div>
+              </div>
+            </div>
+        </ng-template>
+    </p-menubar>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

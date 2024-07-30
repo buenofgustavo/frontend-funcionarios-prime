@@ -1,0 +1,78 @@
+<div>
+    <p-card [style]="{'margin-top': '20px', 'max-width': '100%'}" header="Simple Card">
+        
+        <!-- Conteúdo do p-card -->
+
+        <div class="card flex justify-content-center">
+            <p-dropdown [options]="clientes" [(ngModel)]="selectedClient" optionLabel="name" [filter]="true"
+                filterBy="name" [showClear]="true" placeholder="Selecione o cliente" [style]="{'width': '100%'}">
+                <ng-template pTemplate="filter" let-options="options">
+                    <div class="flex gap-1">
+                        <div class="p-inputgroup" (click)="$event.stopPropagation()">
+                            <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
+                            <input type="text" pInputText placeholder="Digite o nome" [(ngModel)]="filterValue"
+                                (keyup)="customFilterFunction($event, options)" />
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="selectedItem" let-selectedOption>
+                    <div class="flex align-items-center gap-2">
+                        <div>{{ selectedOption.name }}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-country pTemplate="item">
+                    <div class="flex align-items-center gap-2">
+                        <div>{{ country.name }}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+
+        <!-- Iterate over produtosList to show existing products -->
+        <div *ngFor="let produto of produtosList; let i = index" class="form-grid">
+            <div class="p-field">
+                <label for="produtos-{{i}}">Produto</label>
+                <p-dropdown [style]="{'width': '100%'}" id="produtos-{{i}}" [(ngModel)]="produto.produto" [options]="produtos"
+                    placeholder="Selecione"></p-dropdown>
+            </div>
+
+            <div [style]="{'margin-left': '0%'}" class="p-field">
+                <label for="quantidade-{{i}}">Quantidade</label>
+                <p-dropdown [style]="{'width': '100%'}" id="quantidade-{{i}}" [options]="quantidades" [(ngModel)]="produto.quantidade" placeholder="">
+                </p-dropdown>
+            </div>
+
+            <div class="p-field">
+                <label for="preco-{{i}}">Preço</label>
+                <input id="preco-{{i}}" [style]="{'width': '100%'}" type="number" pInputText [(ngModel)]="produto.valor" />
+            </div>  
+        </div>
+
+        <!-- Form for adding a new product -->
+        <div class="form-grid">
+            <div class="p-field">
+                <label for="produtos-new">Produto</label>
+                <p-dropdown [style]="{'width': '100%'}" id="produtos-new" [(ngModel)]="currentProduto.produto" [options]="produtos"
+                    placeholder="Selecione"></p-dropdown>
+            </div>
+
+            <div [style]="{'margin-left': '0%'}" class="p-field">
+                <label for="quantidade-new">Quantidade</label>
+                <p-dropdown [style]="{'width': '100%'}" id="quantidade-new" [options]="quantidades" [(ngModel)]="currentProduto.quantidade" placeholder="">
+                </p-dropdown>
+            </div>
+            
+            <div class="p-field">
+                <label for="preco-new">Preço</label>
+                <input id="preco-new" [style]="{'width': '100%'}" type="number" pInputText [(ngModel)]="currentProduto.valor" />
+            </div>  
+        </div>
+
+        <p-button [style]="{'margin-top': '10px'}" icon="pi pi-plus" iconPos="right" (click)="addProduto()"></p-button>
+       
+        <!-- Container for Submit button, positioned below the p-card content -->
+        <div class="submit-button-container">
+            <p-button label="Confirmar" (click)="confirmar()" />
+        </div>
+    </p-card>
+</div>
